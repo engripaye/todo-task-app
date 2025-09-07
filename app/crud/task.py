@@ -19,7 +19,7 @@ def list_tasks(db: Session, owner_id: int):
     return db.query(Task).filter(Task.owner_id == owner_id).all()
 
 
-def updated_task(db: Session, task: Task, title: Optional[str] = None, description: Optional[str] = None,
+def update_task(db: Session, task: Task, title: Optional[str] = None, description: Optional[str] = None,
                  completed: Optional[bool] = None):
     if title is not None:
         task.title = title
