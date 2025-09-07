@@ -24,4 +24,17 @@ def read_task(task_id: int, db: Session = Depends(get_db), current_user = Depend
     return task
 
 @router.put("/task_id", response_model=TaskOut)
-def
+def edit_task(task_id: int, task_in: TaskUpdate, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    task = get_task(db, task_id, current_user, current_user.id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    updated = update_task(db , task, title=task_in.title, description=task_in.description, completed=task_in.completed)
+    return updated
+
+@router.delete("/{task_id}", status_code=204)
+def remove_task(task_id: int, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    task = get_task(db, task_id, current_user.id)
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    delete_task(db, task)
+    return None
