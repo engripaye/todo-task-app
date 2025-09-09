@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Text, Boolean, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
-from app.db.base import Base
+from app.db.session import Base
 
 
 class Task(Base):
