@@ -13,5 +13,8 @@ class UserCreate(UserBase):
 class UserResponse(UserBase):
     id: int
 
+class UserOut(UserBase):  # ✅ this was missing
+    id: int
+
     class Config:
         from_attributes = True
