@@ -1,16 +1,17 @@
 from pydantic import BaseModel, EmailStr
-from typing import Optional
 
 
-class UserCreate(BaseModel):
+class UserBase(BaseModel):
     email: EmailStr
+    username: str  # ✅ new field
+
+
+class UserCreate(UserBase):
     password: str
 
 
-class UserOut(BaseModel):
+class UserResponse(UserBase):
     id: int
-    email: EmailStr
-    is_active: bool
 
     class Config:
-        orm_mode = True
+        from_attributes = True
