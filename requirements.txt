@@ -6,3 +6,5 @@ pydantic>=2.0
 python-dotenv>=1.0
 passlib[bcrypt]>=1.7
 python-jose>=3.3      # for JWT
+pydantic[email]
+python-multipart
